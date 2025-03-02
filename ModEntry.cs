@@ -8,8 +8,9 @@ namespace HammerHeavyAttackAlwaysCrits
 {
     public class Config
     {
-        public string Note { get; set; } = "additional crit multiplier set below will only apply to the special attack of hammer/clubs";
+        public string Note { get; set; } = "additional crit chance, and crit multiplier set below will only apply to the special attack of hammer/clubs";
         public float ApplyAdditionalCritMultiplierDamage { get; set; } = 0.0f;
+        public float ApplyAdditionalCritChance{ get; set; } = 100.0f;
 
     }
 

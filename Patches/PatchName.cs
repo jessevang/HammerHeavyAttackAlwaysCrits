@@ -56,13 +56,31 @@ internal class PatchName : BasePatcher
 
         int minDamage = 0;
         int maxDamage = 0;
+        string weaponName = "";
+        float critChance = 0f;
+        float critMultiplier = 0f;
         if(MeleeWeapon.TryGetData(who.CurrentTool.itemId.ToString(), out var weaponData))
         {
-            minDamage = (int)(weaponData.MinDamage *(weaponData.CritMultiplier + Instance.Config.ApplyAdditionalCritMultiplierDamage));
-            maxDamage = (int)(weaponData.MaxDamage *(weaponData.CritMultiplier + Instance.Config.ApplyAdditionalCritMultiplierDamage));
-        }
+            weaponName = weaponData.Name;
+            critMultiplier = weaponData.CritMultiplier + Instance.Config.ApplyAdditionalCritMultiplierDamage;
+            critChance = weaponData.CritChance + Instance.Config.ApplyAdditionalCritChance;
+            minDamage = (int)(weaponData.MinDamage);
+            maxDamage = (int)(weaponData.MaxDamage);
 
-        who.currentLocation.damageMonster(new Rectangle((int)who.Position.X - 192, who.GetBoundingBox().Y - 192, 384, 384), minDamage, maxDamage, isBomb: false, 1.5f, 100, 0f, 1f, triggerMonsterInvincibleTimer: false, who);
+        }
+        /*
+     
+            Console.WriteLine("WeaponName:" + weaponName);
+            Console.WriteLine("minDamage:" + minDamage);
+            Console.WriteLine("maxDamage:" + maxDamage);
+            Console.WriteLine("critChance:" + critChance);
+            Console.WriteLine("critMultiplier:" + critMultiplier);
+        
+        */
+
+
+
+        who.currentLocation.damageMonster(new Rectangle((int)who.Position.X - 192, who.GetBoundingBox().Y - 192, 384, 384), minDamage, maxDamage, isBomb: false, 1.5f, 100, critChance, critMultiplier, triggerMonsterInvincibleTimer: false, who);
         Game1.viewport.Y -= 21;
         Game1.viewport.X += Game1.random.Next(-32, 32);
         Vector2 v = who.getUniformPositionAwayFromBox(who.FacingDirection, 64);

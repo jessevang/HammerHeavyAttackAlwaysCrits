@@ -1,7 +1,7 @@
 {
   "Name": "HammerHeavyAttackAlwaysCrits",
   "Author": "Darkmushu1",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Description": "Always Crits on Hammer when using the Heavy Attack",
   "UniqueID": "Darkmushu1.HammerHeavyAttackAlwaysCrits",
   "EntryDll": "HammerHeavyAttackAlwaysCrits.dll",
